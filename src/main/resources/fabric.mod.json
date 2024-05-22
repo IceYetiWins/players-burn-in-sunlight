@@ -9,8 +9,8 @@
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/mod/players-burn-in-sunlight",
-		"sources": "",
-		"issues": ""
+		"sources": "https://github.com/IceYetiWins/players-burn-in-sunlight",
+		"issues": "https://github.com/IceYetiWins/players-burn-in-sunlight/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/players-burn-in-sunlight/icon.png",
