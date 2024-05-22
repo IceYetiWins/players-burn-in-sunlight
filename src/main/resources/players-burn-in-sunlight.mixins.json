@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "com.iceyetiwins.playersburninsunlight.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"LivingEntityMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
