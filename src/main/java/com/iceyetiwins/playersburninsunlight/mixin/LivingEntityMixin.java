@@ -11,7 +11,7 @@ import com.iceyetiwins.playersburninsunlight.OnPlayerUpdate;
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
 	@Inject(at = @At("RETURN"), method = "tick")
-	private void burninthesun_onTick(CallbackInfo ci) {
+	private void init(CallbackInfo ci) {
 		LivingEntity livingEntity = (LivingEntity) (Object) this;
 		if (livingEntity instanceof PlayerEntity player) {
 			OnPlayerUpdate.onPlayerUpdate(player);
