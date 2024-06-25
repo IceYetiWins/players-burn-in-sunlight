@@ -2,11 +2,16 @@ package com.iceyetiwins.playersburninsunlight;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.Precipitation;
 
 public class OnPlayerUpdate {
 	public static void onPlayerUpdate(PlayerEntity player){
 		
-		BlockPos blockPos = BlockPos.ofFloored(player.getX(), player.getEyeY(), player.getZ());
+		BlockPos pos = BlockPos.ofFloored(player.getX(), player.getEyeY(), player.getZ());
+
+		Biome biome = player.getWorld().getBiome(pos).value();
+		boolean isRainingOrSnowing = false;
 
 		long currentTime = player.getWorld().getTimeOfDay();
 
@@ -14,10 +19,14 @@ public class OnPlayerUpdate {
 			currentTime -= 24000;
 		}
 
-		if (currentTime < 12542 || currentTime > 23460) {
-			if (player.getWorld().isSkyVisible(blockPos) && !player.isWet() && !player.getWorld().isRaining() && !player.inPowderSnow && !player.wasInPowderSnow && !player.isSleeping()){
-				player.setOnFireFor(8);
-			}
+		if (player.getWorld().isRaining() && ((biome.getPrecipitation(pos) == Precipitation.RAIN) || (biome.getPrecipitation(pos) == Precipitation.SNOW))){
+			isRainingOrSnowing = true;
+		} else {
+			isRainingOrSnowing = false;
+		}
+		
+		if ((currentTime < 12542 || currentTime > 23460) && player.getWorld().isSkyVisible(pos) && !player.isWet() && !isRainingOrSnowing && !player.inPowderSnow && !player.wasInPowderSnow && !player.isSleeping()){
+			player.setOnFireFor(8);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "players-burn-in-sunlight",
-	"version": "1.0.1",
+	"version": "1.0.3",
 	"name": "Players Burn in Sunlight",
 	"description": "Server-side mod that makes players burn in sunlight like some mobs do.",
 	"authors": [
