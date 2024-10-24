@@ -19,7 +19,7 @@ public class OnPlayerUpdate {
 			currentTime -= 24000;
 		}
 		
-		if (player.getWorld().isRaining() && ((biome.getPrecipitation(pos) == Precipitation.RAIN) || (biome.getPrecipitation(pos) == Precipitation.SNOW))){
+		if (player.getWorld().isRaining() && ((biome.getPrecipitation(pos, player.getWorld().getSeaLevel()) == Precipitation.RAIN) || (biome.getPrecipitation(pos, player.getWorld().getSeaLevel()) == Precipitation.SNOW))){
 			isRainingOrSnowing = true;
 		} else {
 			isRainingOrSnowing = false;
