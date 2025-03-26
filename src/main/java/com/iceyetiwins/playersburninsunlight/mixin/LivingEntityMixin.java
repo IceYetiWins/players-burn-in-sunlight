@@ -1,5 +1,6 @@
 package com.iceyetiwins.playersburninsunlight.mixin;
 
+import com.iceyetiwins.playersburninsunlight.ModConfig;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,7 +14,7 @@ public class LivingEntityMixin {
 	@Inject(at = @At("RETURN"), method = "tick")
 	private void init(CallbackInfo ci) {
 		LivingEntity livingEntity = (LivingEntity) (Object) this;
-		if (livingEntity instanceof PlayerEntity player) {
+		if (livingEntity instanceof PlayerEntity player && ModConfig.enabled) {
 			OnPlayerUpdate.onPlayerUpdate(player);
 		}
 	}
