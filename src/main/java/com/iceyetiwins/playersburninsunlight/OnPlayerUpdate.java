@@ -25,7 +25,7 @@ public class OnPlayerUpdate {
 			isRainingOrSnowing = false;
 		}
 		
-		if ((currentTime < 12542 || currentTime > 23460) && player.getWorld().isSkyVisible(pos) && !player.isWet() && !isRainingOrSnowing && !player.inPowderSnow && !player.wasInPowderSnow && !player.isSleeping()){
+		if ((currentTime < 12542 || currentTime > 23460) && player.getWorld().isSkyVisible(pos) && !player.isTouchingWaterOrRain() && !isRainingOrSnowing && !player.inPowderSnow && !player.wasInPowderSnow && !player.isSleeping()){
 			player.setOnFireFor(8);
 		}
 	}
