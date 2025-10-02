@@ -6,23 +6,23 @@ import net.minecraft.world.biome.*;
 import net.minecraft.world.biome.Biome.Precipitation;
 
 public class OnPlayerUpdate {
-	public static void onPlayerUpdate(PlayerEntity player){
+    public static void onPlayerUpdate(PlayerEntity player){
 
-		BlockPos pos = BlockPos.ofFloored(player.getX(), player.getEyeY(), player.getZ());
+        BlockPos pos = BlockPos.ofFloored(player.getX(), player.getEyeY(), player.getZ());
 
-		Biome biome = player.getWorld().getBiome(pos).value();
-		boolean isRainingOrSnowing = false;
+        Biome biome = player.getEntityWorld().getBiome(pos).value();
+        boolean isRainingOrSnowing = false;
 
-		long currentTime = player.getWorld().getTimeOfDay();
+        long currentTime = player.getEntityWorld().getTimeOfDay();
 
-		while (currentTime >= 24000) {
-			currentTime -= 24000;
-		}
+        while (currentTime >= 24000) {
+            currentTime -= 24000;
+        }
 
-		isRainingOrSnowing = player.getWorld().isRaining() && ((biome.getPrecipitation(pos, player.getWorld().getSeaLevel()) == Precipitation.RAIN) || (biome.getPrecipitation(pos, player.getWorld().getSeaLevel()) == Precipitation.SNOW));
+        isRainingOrSnowing = player.getEntityWorld().isRaining() && ((biome.getPrecipitation(pos, player.getEntityWorld().getSeaLevel()) == Precipitation.RAIN) || (biome.getPrecipitation(pos, player.getEntityWorld().getSeaLevel()) == Precipitation.SNOW));
 
-		if ((currentTime < 12542 || currentTime > 23460) && player.getWorld().isSkyVisible(pos) && !player.isTouchingWaterOrRain() && !isRainingOrSnowing && !player.inPowderSnow && !player.wasInPowderSnow && !player.isSleeping()){
-			player.setOnFireFor(8);
-		}
-	}
+        if ((currentTime < 12542 || currentTime > 23460) && player.getEntityWorld().isSkyVisible(pos) && !player.isTouchingWaterOrRain() && !isRainingOrSnowing && !player.inPowderSnow && !player.wasInPowderSnow && !player.isSleeping()){
+            player.setOnFireFor(8);
+        }
+    }
 }
