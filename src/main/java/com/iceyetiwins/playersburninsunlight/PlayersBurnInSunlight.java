@@ -2,9 +2,9 @@ package com.iceyetiwins.playersburninsunlight;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.minecraft.command.ControlFlowAware;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.text.Text;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.execution.CustomCommandExecutor;
+import net.minecraft.network.chat.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,11 +14,11 @@ public class PlayersBurnInSunlight implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-			dispatcher.register(CommandManager.literal("toggleburninsunlight")
+			dispatcher.register(Commands.literal("toggleburninsunlight")
 					.executes(context -> {
 						ModConfig.enabled = !ModConfig.enabled;
-						context.getSource().sendFeedback(() -> Text.literal("Burning in sunlight enabled: " + ModConfig.enabled), true);
-						return ControlFlowAware.Command.SINGLE_SUCCESS;
+						context.getSource().sendSuccess(() -> Component.literal("Burning in sunlight enabled: " + ModConfig.enabled), true);
+						return CustomCommandExecutor.CommandAdapter.SINGLE_SUCCESS;
 					})
 			);
 		});
